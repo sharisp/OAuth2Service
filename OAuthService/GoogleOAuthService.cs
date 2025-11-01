@@ -1,16 +1,41 @@
 ﻿using Microsoft.Extensions.Options;
 using OAuthService.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using static System.Formats.Asn1.AsnWriter;
+using static System.Net.WebRequestMethods;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace OAuthService
 {
-    public class GoogleOAuthService(ApiClientHelper apiClientHelper, IOptions<GoogleOAuthOptions> options)
+    public class GoogleOAuthService(ApiClientHelper apiClientHelper, IOptions<GoogleOAuthOptions> options) : IOAuthService
     {
-        public async Task<GoogleUserInfo> OAuthCallBack(string state, string code = "", string error = "")
+        public string Provider => "Google";
+      /*  public string Provider
+        {
+            get
+            {
+                return "Google";
+            }
+        }*/
+        public string GetAuthorizationUrl(string state)
+        {
+            var query = new Dictionary<string, string>
+    {
+        { "client_id", options.Value.ClientId },
+        { "redirect_uri", options.Value.RedirectUrl },
+        { "response_type", "code" },
+        { "scope", options.Value.Scope },
+        { "state", state }
+    };
+
+            var url = options.Value.AuthUrl + "?" + string.Join("&",
+                query.Select(kv => $"{kv.Key}={Uri.EscapeDataString(kv.Value)}")
+            );
+
+            return url;
+        }
+
+        public async Task<OAuthUserInfo> OAuthCallBack(string state, string code = "", string error = "")
         {
             if (options == null || options.Value == null)
             {
@@ -36,7 +61,7 @@ namespace OAuthService
             apiClientHelper.SetBearerToken(response.Access_token);
 
             var info = await apiClientHelper.GetAsync<GoogleUserInfo>(options.Value.UserInfoUrl);
-            return info;
+            return new OAuthUserInfo(info, this.Provider);
         }
     }
 }
