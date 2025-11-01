@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OAuthService", "GoogleOAuthService\OAuthService.csproj", "{CE087232-7ADF-43EE-8E1D-CE73C81CA562}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE087232-7ADF-43EE-8E1D-CE73C81CA562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE087232-7ADF-43EE-8E1D-CE73C81CA562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE087232-7ADF-43EE-8E1D-CE73C81CA562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE087232-7ADF-43EE-8E1D-CE73C81CA562}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED63FA2B-DB97-48A4-AB2E-06B77E21A45A}
+	EndGlobalSection
+EndGlobal
