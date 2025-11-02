@@ -15,11 +15,11 @@ namespace OAuthService.Options
         public string Avatar { get; set; } = "";
 
         private OAuthUserInfo() { }
-        public  OAuthUserInfo(GoogleUserInfo googleUserInfo, string provider)
+        public  OAuthUserInfo(GoogleUserInfo googleUserInfo, OAuthProviderEnum provider)
         {
             //OAuthUserInfo oAuthUserInfo = new OAuthUserInfo();
             Id = googleUserInfo.Id;
-            Provider = provider;
+            Provider = provider.ToString();
 
             Avatar = googleUserInfo.Picture;
             Email = googleUserInfo.Email;

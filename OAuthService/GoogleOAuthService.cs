@@ -9,14 +9,9 @@ namespace OAuthService
 {
     public class GoogleOAuthService(ApiClientHelper apiClientHelper, IOptions<GoogleOAuthOptions> options) : IOAuthService
     {
-        public string Provider => "Google";
-      /*  public string Provider
-        {
-            get
-            {
-                return "Google";
-            }
-        }*/
+
+        public OAuthProviderEnum Provider => OAuthProviderEnum.Google;
+
         public string GetAuthorizationUrl(string state)
         {
             var query = new Dictionary<string, string>
@@ -64,5 +59,7 @@ namespace OAuthService
             var oAuthInfo=new  OAuthUserInfo(info, this.Provider);
             return oAuthInfo;
         }
+
+      
     }
 }

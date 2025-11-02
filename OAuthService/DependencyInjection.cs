@@ -14,6 +14,8 @@ namespace OAuthService
             services.AddHttpClient<ApiClientHelper>();
             services.Configure<GoogleOAuthOptions>(
      configuration.GetSection("OAuth:Google"));
+            // services.AddScoped<IOAuthService, GoogleOAuthService>();
+            services.AddKeyedScoped<IOAuthService, GoogleOAuthService>(OAuthProviderEnum.Google);
         }
     }
 }
