@@ -33,6 +33,19 @@ namespace XUnitTestProject
             Assert.NotNull(info);
         }
 
-       
+        [Fact]
+        public async Task TestFakeHttp()
+        {
+            Assert.NotNull(_options);
+            Assert.NotNull(_options.Value);
+            var fakeHandler = new FakeHttpMessageHandler();
+            var httpClient = new HttpClient(fakeHandler);
+            var service = new GoogleOAuthService(new ApiClientHelper(httpClient), _options);
+            var url = service.GetAuthorizationUrl(Guid.NewGuid().ToString());
+            Assert.NotNull(url);
+            var info = await service.OAuthCallBack("state123", "fake-code");
+
+            Assert.NotNull(info);
+        }
     }
 }
