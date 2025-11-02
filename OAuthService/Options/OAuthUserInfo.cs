@@ -15,15 +15,17 @@ namespace OAuthService.Options
         public string Avatar { get; set; } = "";
 
         private OAuthUserInfo() { }
-        public OAuthUserInfo(GoogleUserInfo googleUserInfo, string provider)
+        public  OAuthUserInfo(GoogleUserInfo googleUserInfo, string provider)
         {
-            OAuthUserInfo oAuthUserInfo = new OAuthUserInfo();
-            oAuthUserInfo.Id = googleUserInfo.Id;
-            oAuthUserInfo.Provider = provider;
+            //OAuthUserInfo oAuthUserInfo = new OAuthUserInfo();
+            Id = googleUserInfo.Id;
+            Provider = provider;
 
-            oAuthUserInfo.Avatar = googleUserInfo.Picture;
-            oAuthUserInfo.Email = googleUserInfo.Email;
-            oAuthUserInfo.Name = googleUserInfo.Name;
+            Avatar = googleUserInfo.Picture;
+            Email = googleUserInfo.Email;
+            Name = googleUserInfo.Name;
+           
+          
         }
     }
 

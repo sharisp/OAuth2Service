@@ -61,7 +61,8 @@ namespace OAuthService
             apiClientHelper.SetBearerToken(response.Access_token);
 
             var info = await apiClientHelper.GetAsync<GoogleUserInfo>(options.Value.UserInfoUrl);
-            return new OAuthUserInfo(info, this.Provider);
+            var oAuthInfo=new  OAuthUserInfo(info, this.Provider);
+            return oAuthInfo;
         }
     }
 }
