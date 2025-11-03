@@ -6,7 +6,7 @@ namespace OAuthService
 {
     public static class DependencyInjection
     {
-        public static void AddGoogleOAuthService(this IServiceCollection services,
+        public static void AddOAuthService(this IServiceCollection services,
            IConfiguration configuration)
         {
             if (services == null) throw new ArgumentNullException(nameof(services));
