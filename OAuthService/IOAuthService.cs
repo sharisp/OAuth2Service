@@ -16,7 +16,7 @@ namespace OAuthService
 
       //  string ProviderName => Provider.ToString();
         string GetAuthorizationUrl(string state);
-        Task<OAuthUserInfo> OAuthCallBack(string state, string code = "", string error = "");
+        Task<OAuthResponse> OAuthCallBack(string state, string code = "", string error = "");
     }
 
 }
