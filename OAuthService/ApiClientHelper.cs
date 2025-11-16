@@ -16,8 +16,15 @@ namespace OAuthService
         public async Task<T?> GetAsync<T>(string url)
         {
             var response = await httpClient.GetAsync(url);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<T>();
+            var respBody = await response.Content.ReadAsStringAsync();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($" API {url} Error {response.StatusCode}: {respBody}");
+
+            }
+            // return await response.Content.ReadFromJsonAsync<T>();
+            return JsonSerializer.Deserialize<T>(respBody);
+           // return await response.Content.ReadFromJsonAsync<T>();
         }
 
         public async Task<T?> PostAsync<T>(string url, object data,string contentType= "application/json")
@@ -34,9 +41,18 @@ namespace OAuthService
                 content = new StringContent(json, Encoding.UTF8, contentType);
             }
 
+
             var response = await httpClient.PostAsync(url, content);
-            response.EnsureSuccessStatusCode();
-            return await response.Content.ReadFromJsonAsync<T>();
+
+            var respBody = await response.Content.ReadAsStringAsync();
+            //  response.EnsureSuccessStatusCode();
+            if (!response.IsSuccessStatusCode)
+            {
+                throw new Exception($" API {url} Error {response.StatusCode}: {respBody}");
+             
+            }
+           // return await response.Content.ReadFromJsonAsync<T>();
+            return JsonSerializer.Deserialize<T>(respBody);
         }
 
         public async Task<T?> PutAsync<T>(string url, object data)

@@ -38,7 +38,7 @@ namespace OAuthService
             if (!string.IsNullOrEmpty(error))
                 return new OAuthResponse(false, error, null);
 
-          
+
             var values = new Dictionary<string, string>
     {
         { "code", code },

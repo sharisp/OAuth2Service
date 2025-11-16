@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace OAuthService.Options
 {
+
     public class GoogleUserInfo
     {
+        [JsonPropertyName("id")]
         public string Id { get; set; } = "";
+
+        [JsonPropertyName("email")]
         public string Email { get; set; } = "";
+
+        [JsonPropertyName("name")]
         public string Name { get; set; } = "";
+
+        [JsonPropertyName("picture")]
         public string Picture { get; set; } = "";
     }
+
 }
